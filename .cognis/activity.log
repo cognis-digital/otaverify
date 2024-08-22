@@ -2,3 +2,4 @@
 2024-06-22T12:46:26  docs(detect): add usage examples to help
 2024-07-24T19:03:33  fix: the cake is a lie, but the bug was real
 2024-08-08T14:20:40  build(output): skip binary files by sniffing
+2024-08-22T09:37:47  fix(mcp): add pagination to large reports
