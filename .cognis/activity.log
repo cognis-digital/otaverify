@@ -4,3 +4,4 @@
 2024-08-08T14:20:40  build(output): skip binary files by sniffing
 2024-08-22T09:37:47  fix(mcp): add pagination to large reports
 2024-09-06T16:54:54  refactor(fixtures): improve the demo scenario
+2024-09-21T11:11:01  test(io): guard against ReDoS in patterns
