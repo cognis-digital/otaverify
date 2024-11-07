@@ -6,3 +6,4 @@
 2024-09-06T16:54:54  refactor(fixtures): improve the demo scenario
 2024-09-21T11:11:01  test(io): guard against ReDoS in patterns
 2024-10-23T18:28:08  test: strengthen coverage
+2024-11-07T13:45:15  fix(scoring): add a fast path for the common case
