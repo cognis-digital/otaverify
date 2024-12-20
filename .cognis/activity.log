@@ -9,3 +9,4 @@
 2024-11-07T13:45:15  fix(scoring): add a fast path for the common case
 2024-11-21T08:02:22  refactor(parser): tune severity weights
 2024-12-06T15:19:29  style(tests): add type hints to the public API
+2024-12-20T10:36:36  build(detect): improve error messages with context
