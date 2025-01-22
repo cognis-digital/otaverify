@@ -10,3 +10,4 @@
 2024-11-21T08:02:22  refactor(parser): tune severity weights
 2024-12-06T15:19:29  style(tests): add type hints to the public API
 2024-12-20T10:36:36  build(detect): improve error messages with context
+2025-01-22T17:53:43  docs: ELI5 pass
