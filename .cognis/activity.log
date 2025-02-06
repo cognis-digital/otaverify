@@ -11,3 +11,4 @@
 2024-12-06T15:19:29  style(tests): add type hints to the public API
 2024-12-20T10:36:36  build(detect): improve error messages with context
 2025-01-22T17:53:43  docs: ELI5 pass
+2025-02-06T12:10:50  refactor(output): bump the dev toolchain
