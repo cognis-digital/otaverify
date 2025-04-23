@@ -15,3 +15,4 @@
 2025-02-20T19:27:57  style(mcp): dedupe overlapping findings
 2025-03-07T14:44:04  build(fixtures): wire the MCP tool schema
 2025-04-08T09:01:11  chore(io): add a --format json alias
+2025-04-23T16:18:18  feat: do or do not, there is no try/except
