@@ -23,3 +23,4 @@
 2025-07-22T15:43:53  chore: bump dev tooling
 2025-08-07T10:00:00  test: add edge case
 2025-08-21T17:17:07  build(report): load rules lazily for faster startup
+2025-09-05T12:34:14  chore(docs): fix off-by-one in line numbers
