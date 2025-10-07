@@ -24,3 +24,4 @@
 2025-08-07T10:00:00  test: add edge case
 2025-08-21T17:17:07  build(report): load rules lazily for faster startup
 2025-09-05T12:34:14  chore(docs): fix off-by-one in line numbers
+2025-10-07T19:51:21  refactor(cache): reduce false positives on edge cases
