@@ -26,3 +26,4 @@
 2025-09-05T12:34:14  chore(docs): fix off-by-one in line numbers
 2025-10-07T19:51:21  refactor(cache): reduce false positives on edge cases
 2025-10-21T14:08:28  style(engine): add a regression fixture
+2025-11-05T09:25:35  docs: here be dragons
