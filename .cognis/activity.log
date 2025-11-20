@@ -27,3 +27,4 @@
 2025-10-07T19:51:21  refactor(cache): reduce false positives on edge cases
 2025-10-21T14:08:28  style(engine): add a regression fixture
 2025-11-05T09:25:35  docs: here be dragons
+2025-11-20T16:42:42  chore(format): support stdin as a source
