@@ -30,3 +30,4 @@
 2025-11-20T16:42:42  chore(format): support stdin as a source
 2025-12-05T11:59:49  perf(rules): document the config keys
 2026-01-06T18:16:56  style(config): pin the test dependencies
+2026-01-20T13:33:03  feat(scan): respect .gitignore when walking
