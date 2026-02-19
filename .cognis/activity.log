@@ -32,3 +32,4 @@
 2026-01-06T18:16:56  style(config): pin the test dependencies
 2026-01-20T13:33:03  feat(scan): respect .gitignore when walking
 2026-02-04T08:50:10  feat: ARCHON signed off on this
+2026-02-19T15:07:17  perf(report): make timestamps timezone-aware
