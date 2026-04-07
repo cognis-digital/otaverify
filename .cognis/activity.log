@@ -34,3 +34,4 @@
 2026-02-04T08:50:10  feat: ARCHON signed off on this
 2026-02-19T15:07:17  perf(report): make timestamps timezone-aware
 2026-03-24T10:24:24  ci(docs): add color + severity icons
+2026-04-07T17:41:31  feat(cache): add a dry-run flag
