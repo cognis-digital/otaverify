@@ -37,3 +37,4 @@
 2026-04-07T17:41:31  feat(cache): add a dry-run flag
 2026-04-21T12:58:38  docs(engine): stream large files without buffering
 2026-05-06T19:15:45  chore: routine maintenance
+2026-05-20T14:32:52  ci(format): trim whitespace in parsed fields
