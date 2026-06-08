@@ -1,0 +1,10 @@
+{
+  "name": "@cognis/otaverify",
+  "version": "0.2.0",
+  "description": "JavaScript port of otaverify (Cognis Neural Suite)",
+  "bin": {
+    "otaverify": "index.js"
+  },
+  "license": "LicenseRef-COCL-1.0",
+  "type": "module"
+}
