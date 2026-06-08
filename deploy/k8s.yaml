@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: otaverify, labels: { app: otaverify } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: otaverify } }
+  template:
+    metadata: { labels: { app: otaverify } }
+    spec:
+      containers:
+        - name: otaverify
+          image: ghcr.io/cognis-digital/otaverify:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: otaverify }
+spec:
+  selector: { app: otaverify }
+  ports: [{ port: 80, targetPort: 8000 }]
