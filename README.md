@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-otaverify
+pip install "git+https://github.com/cognis-digital/otaverify.git"
 otaverify scan .            # → prioritized findings in seconds
 ```
 
@@ -51,7 +51,7 @@ Uptane/automotive OTA compliance hook — one command in your release pipeline t
 ## Quick start
 
 ```bash
-pip install cognis-otaverify
+pip install "git+https://github.com/cognis-digital/otaverify.git"
 otaverify --version
 otaverify scan .                       # scan current project
 otaverify scan . --format json         # machine-readable

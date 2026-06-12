@@ -5,12 +5,11 @@ readable). These tests recompute the correct HMAC signatures with the stdlib
 and assert that the full pipeline behaves correctly for accept/reject cases.
 """
 
-import copy
 import json
 import os
 
 from otaverify import TOOL_NAME, TOOL_VERSION, verify_package
-from otaverify.core import canonical_bytes, _hmac_hex, verify_manifest
+from otaverify.core import canonical_bytes, _hmac_hex
 from otaverify.cli import main
 
 HERE = os.path.dirname(__file__)
