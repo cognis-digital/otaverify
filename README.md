@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/otaverify.git"
 otaverify scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+otaverify checks whether a firmware update package is safe to install on a device before it ships. It confirms the update was signed by a trusted key, that it has not expired, and that it cannot roll the device back to an older, potentially vulnerable version. Hardware makers, embedded engineers, and security teams use it to catch bad updates in their release pipeline before they reach devices in the field.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why otaverify?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -48,6 +54,42 @@ Uptane/automotive OTA compliance hook — one command in your release pipeline t
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`otaverify` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/otaverify/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/otaverify/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/otaverify.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/otaverify.git"  # uv
+pip install "git+https://github.com/cognis-digital/otaverify.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/otaverify.git
+cd otaverify && pip install .
+```
+
+Then run:
+```sh
+otaverify --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
