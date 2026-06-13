@@ -20,6 +20,31 @@ pip install cognis-otaverify
 otaverify scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+`otaverify` validates OTA update packages — signature chains, anti-downgrade
+counters, expiry and payload digests (TUF/Uptane spirit). Console script: `otaverify`.
+
+1. **Install** from a clone:
+   ```bash
+   pip install -e .
+   ```
+2. **Verify a package** — exits non-zero if the package would be rejected (CI gate):
+   ```bash
+   otaverify verify demos/01-basic/package.json
+   ```
+3. **Read the verdict programmatically** with JSON output:
+   ```bash
+   otaverify verify --format json package.json | jq '.ok, .summary'
+   ```
+   `ok: false` means REJECT; the `findings` array explains why.
+4. **Inspect findings** — each finding carries a `check`, `severity` (error/warning/info) and `message`.
+5. **Automate in CI** — block shipping an unsafe update:
+   ```yaml
+   - run: pip install -e .
+   - run: otaverify verify release/package.json
+   ```
+
 ## Contents
 
 - [Why otaverify?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
