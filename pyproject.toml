@@ -34,3 +34,6 @@ otaverify = "otaverify.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["otaverify"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
