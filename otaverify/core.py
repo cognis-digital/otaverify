@@ -86,10 +86,15 @@ class VerifyResult:
 
 def load_json(path: str) -> dict[str, Any]:
     """Load a JSON package document from disk."""
-    with open(path, "r", encoding="utf-8") as fh:
-        data = json.load(fh)
+    if not path:
+        raise ValueError("package path must not be empty")
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            data = json.load(fh)
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"invalid JSON in {path!r}: {exc}") from exc
     if not isinstance(data, dict):
-        raise ValueError("package root must be a JSON object")
+        raise ValueError(f"package root must be a JSON object, got {type(data).__name__}")
     return data
 
 
@@ -102,7 +107,9 @@ def canonical_bytes(obj: Any) -> bytes:
     return json.dumps(obj, sort_keys=True, separators=(",", ":")).encode("utf-8")
 
 
-def _hmac_hex(secret_hex: str, payload: bytes) -> str:
+def _hmac_hex(secret_hex: Any, payload: bytes) -> str:
+    if not isinstance(secret_hex, str):
+        secret_hex = str(secret_hex) if secret_hex is not None else ""
     try:
         key = bytes.fromhex(secret_hex)
     except ValueError:
@@ -145,6 +152,12 @@ def verify_manifest(
         )
         threshold = max(1, threshold if isinstance(threshold, int) else 1)
 
+    if not isinstance(signatures, list):
+        findings.append(
+            Finding("sig.present", "error", "signatures field must be a list")
+        )
+        return findings
+
     payload = canonical_bytes(manifest)
     valid_keyids: set[str] = set()
     seen_keyids: set[str] = set()
@@ -153,6 +166,11 @@ def verify_manifest(
         findings.append(Finding("sig.present", "error", "manifest is unsigned"))
 
     for sig in signatures:
+        if not isinstance(sig, dict):
+            findings.append(
+                Finding("sig.malformed", "warning", f"signature entry is not an object: {sig!r}")
+            )
+            continue
         keyid = sig.get("keyid")
         provided = sig.get("sig", "")
         if keyid not in keys:
@@ -331,9 +349,12 @@ def verify_package(
 
     root = package.get("root") or {}
     manifest = package.get("manifest") or {}
-    signatures = package.get("signatures") or []
+    raw_sigs = package.get("signatures")
+    signatures: list[Any] = raw_sigs if isinstance(raw_sigs, list) else ([] if raw_sigs is None else raw_sigs)
     device = package.get("device") or {}
-    payloads = package.get("payloads") or {}
+    payloads = package.get("payloads")
+    if not isinstance(payloads, dict):
+        payloads = {}
 
     if not manifest:
         findings.append(Finding("package", "error", "package has no manifest"))
