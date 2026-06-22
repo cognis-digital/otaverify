@@ -1,0 +1,33 @@
+{
+  "root": {
+    "keys": {
+      "build-bot": "0f1e2d3c4b5a69788796a5b4c3d2e1f00f1e2d3c4b5a69788796a5b4c3d2e1f0"
+    },
+    "threshold": 1
+  },
+  "manifest": {
+    "version": 7,
+    "counter": 7,
+    "expires": "2025-03-01T00:00:00Z",
+    "images": [
+      {
+        "name": "app",
+        "sha256": "b9f482a2990e63d863a802f2770a24c415c8f8daf111a25eb8265b839274d8bb",
+        "size": 12
+      }
+    ]
+  },
+  "device": {
+    "version": 6,
+    "counter": 6
+  },
+  "payloads": {
+    "app": "7b22667741223a747275657d"
+  },
+  "signatures": [
+    {
+      "keyid": "build-bot",
+      "sig": "69616627af24889640262f4ceec620dbb94fc395a1597fe60f7c5df242447dff"
+    }
+  ]
+}

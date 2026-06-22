@@ -1,0 +1,55 @@
+{
+  "root": {
+    "keys": {
+      "fleet-root": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6",
+      "release-eng": "112233445566778899aabbccddeeff00112233445566778899aabbccddeeff00",
+      "qa-signer": "ffeeddccbbaa99887766554433221100ffeeddccbbaa99887766554433221100"
+    },
+    "threshold": 3
+  },
+  "manifest": {
+    "version": 5,
+    "counter": 5,
+    "expires": "2031-01-01T00:00:00Z",
+    "images": [
+      {
+        "name": "kernel",
+        "sha256": "128a35e54baa4da3e159bf46180d8eaaa25c698b12424c77d8d1342a419510bf",
+        "size": 15
+      },
+      {
+        "name": "rootfs",
+        "sha256": "faaafb8022c1404b286a801e8f1cdc1a6f86ff7b3f2e725a47692ef13a1f0a48",
+        "size": 15
+      },
+      {
+        "name": "bootldr",
+        "sha256": "30e67e463159d90d7eac804e96514eba420f6ed8e1c1d528f32758701258568a",
+        "size": 8
+      }
+    ]
+  },
+  "device": {
+    "version": 4,
+    "counter": 4
+  },
+  "payloads": {
+    "kernel": "1f8b08000000000000ff0bce2c5108",
+    "rootfs": "c0ffee00112233445566778899aabb",
+    "bootldr": "aa55aa55deadc0de"
+  },
+  "signatures": [
+    {
+      "keyid": "fleet-root",
+      "sig": "0b6ea2d3826b588b66aae71c51577a2ec12dddec68180dcd7f32df2351436855"
+    },
+    {
+      "keyid": "release-eng",
+      "sig": "80dd2ea858112174ebe1c769dd6a63bbd3c212430f2f1988070cad47fb28d879"
+    },
+    {
+      "keyid": "qa-signer",
+      "sig": "fef93b1c6874b594b75229203d3e0e48db9e9bafec5bb3194308ef6298e10a14"
+    }
+  ]
+}

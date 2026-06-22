@@ -1,0 +1,45 @@
+{
+  "root": {
+    "keys": {
+      "fleet-root": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6",
+      "release-eng": "112233445566778899aabbccddeeff00112233445566778899aabbccddeeff00",
+      "hsm-prod": "deadbeefcafebabefeedface0badc0de0123456789abcdeffedcba9876543210"
+    },
+    "threshold": 2
+  },
+  "manifest": {
+    "version": 2026062001,
+    "counter": 48,
+    "expires": "2027-01-31T00:00:00Z",
+    "images": [
+      {
+        "name": "ecu-app",
+        "sha256": "128a35e54baa4da3e159bf46180d8eaaa25c698b12424c77d8d1342a419510bf",
+        "size": 15
+      },
+      {
+        "name": "ecu-cfg",
+        "sha256": "b9f482a2990e63d863a802f2770a24c415c8f8daf111a25eb8265b839274d8bb",
+        "size": 12
+      }
+    ]
+  },
+  "device": {
+    "version": 2026051501,
+    "counter": 47
+  },
+  "payloads": {
+    "ecu-app": "1f8b08000000000000ff0bce2c5108",
+    "ecu-cfg": "7b22667741223a747275657d"
+  },
+  "signatures": [
+    {
+      "keyid": "fleet-root",
+      "sig": "32d394c5483cbab34080bf7f3222e6d65bcc6f012d801386599f7efddb082a4b"
+    },
+    {
+      "keyid": "hsm-prod",
+      "sig": "2a086e4aaac3a6f3523e83ea9ebf340d5d2a9426317bab991c3a2cbdac398035"
+    }
+  ]
+}

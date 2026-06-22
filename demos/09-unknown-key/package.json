@@ -1,0 +1,33 @@
+{
+  "root": {
+    "keys": {
+      "fleet-root": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6"
+    },
+    "threshold": 1
+  },
+  "manifest": {
+    "version": 15,
+    "counter": 15,
+    "expires": "2030-01-01T00:00:00Z",
+    "images": [
+      {
+        "name": "app",
+        "sha256": "b9f482a2990e63d863a802f2770a24c415c8f8daf111a25eb8265b839274d8bb",
+        "size": 12
+      }
+    ]
+  },
+  "device": {
+    "version": 14,
+    "counter": 14
+  },
+  "payloads": {
+    "app": "7b22667741223a747275657d"
+  },
+  "signatures": [
+    {
+      "keyid": "rogue-key",
+      "sig": "a8f044c6c0cfa662950632d4c5c0f6ae65a4675d4cacda38b1a33a990ce7aa0e"
+    }
+  ]
+}

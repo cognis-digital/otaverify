@@ -20,7 +20,7 @@ import sys
 from typing import Sequence
 
 from otaverify import TOOL_NAME, TOOL_VERSION
-from otaverify.core import VerifyResult, load_json, verify_package
+from otaverify.core import VerifyResult, load_json, to_sarif, verify_package
 
 _SEVERITY_GLYPH = {"error": "FAIL", "warning": "WARN", "info": "ok"}
 
@@ -58,6 +58,8 @@ def _cmd_verify(args: argparse.Namespace) -> int:
         out = result.to_dict()
         out["package"] = args.package
         print(json.dumps(out, indent=2))
+    elif args.format == "sarif":
+        print(json.dumps(to_sarif(result, args.package, TOOL_VERSION), indent=2))
     else:
         print(_render_table(result, args.package))
 
@@ -84,9 +86,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--format",
-        choices=("table", "json"),
+        choices=("table", "json", "sarif"),
         default="table",
-        help="output format (default: table)",
+        help="output format: table, json, or sarif (SARIF 2.1.0 for code-scanning) (default: table)",
     )
 
     sub = parser.add_subparsers(dest="command")

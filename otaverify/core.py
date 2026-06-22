@@ -323,6 +323,76 @@ def check_payloads(
     return findings
 
 
+# SARIF severity mapping (SARIF 2.1.0 result.level).
+_SARIF_LEVEL = {"error": "error", "warning": "warning", "info": "note"}
+
+TOOL_INFO_URI = "https://github.com/cognis-digital/otaverify"
+
+
+def to_sarif(result: "VerifyResult", path: str, tool_version: str = "0.0.0") -> dict[str, Any]:
+    """Render a VerifyResult as a SARIF 2.1.0 log.
+
+    SARIF (Static Analysis Results Interchange Format, OASIS 2.1.0) is what
+    GitHub code-scanning, Azure DevOps, and most CI dashboards ingest. Each
+    otaverify Finding becomes one SARIF ``result``; each distinct ``check``
+    becomes a reusable ``rule`` in the run's ``driver.rules`` catalog.
+
+    The reported physical location is the package document itself, since a
+    failed OTA verification is a property of the whole package, not a code line.
+    """
+    findings = result.findings
+    # Build the rule catalog (one rule per distinct check id, stable order).
+    rule_index: dict[str, int] = {}
+    rules: list[dict[str, Any]] = []
+    for f in findings:
+        if f.check not in rule_index:
+            rule_index[f.check] = len(rules)
+            rules.append(
+                {
+                    "id": f.check,
+                    "name": "".join(part.capitalize() for part in f.check.split(".")),
+                    "shortDescription": {"text": f"OTA check: {f.check}"},
+                    "defaultConfiguration": {"level": _SARIF_LEVEL.get(f.severity, "note")},
+                }
+            )
+
+    results: list[dict[str, Any]] = []
+    for f in findings:
+        results.append(
+            {
+                "ruleId": f.check,
+                "ruleIndex": rule_index[f.check],
+                "level": _SARIF_LEVEL.get(f.severity, "note"),
+                "message": {"text": f.message},
+                "locations": [
+                    {
+                        "physicalLocation": {
+                            "artifactLocation": {"uri": path}
+                        }
+                    }
+                ],
+            }
+        )
+
+    return {
+        "version": "2.1.0",
+        "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+        "runs": [
+            {
+                "tool": {
+                    "driver": {
+                        "name": "otaverify",
+                        "informationUri": TOOL_INFO_URI,
+                        "version": tool_version,
+                        "rules": rules,
+                    }
+                },
+                "results": results,
+            }
+        ],
+    }
+
+
 def verify_package(
     package: dict[str, Any], now: datetime | None = None
 ) -> VerifyResult:

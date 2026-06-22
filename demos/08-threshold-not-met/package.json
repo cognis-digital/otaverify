@@ -1,0 +1,34 @@
+{
+  "root": {
+    "keys": {
+      "release-eng": "112233445566778899aabbccddeeff00112233445566778899aabbccddeeff00",
+      "hsm-prod": "deadbeefcafebabefeedface0badc0de0123456789abcdeffedcba9876543210"
+    },
+    "threshold": 2
+  },
+  "manifest": {
+    "version": 9,
+    "counter": 9,
+    "expires": "2030-01-01T00:00:00Z",
+    "images": [
+      {
+        "name": "bootldr",
+        "sha256": "30e67e463159d90d7eac804e96514eba420f6ed8e1c1d528f32758701258568a",
+        "size": 8
+      }
+    ]
+  },
+  "device": {
+    "version": 8,
+    "counter": 8
+  },
+  "payloads": {
+    "bootldr": "aa55aa55deadc0de"
+  },
+  "signatures": [
+    {
+      "keyid": "release-eng",
+      "sig": "e683076fc96fe8ed435738bf58a46997dc4cee11c4f357568615e144dfd77200"
+    }
+  ]
+}

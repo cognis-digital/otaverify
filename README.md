@@ -35,9 +35,14 @@ counters, expiry and payload digests (TUF/Uptane spirit). Console script: `otave
    ```
 3. **Read the verdict programmatically** with JSON output:
    ```bash
-   otaverify verify --format json package.json | jq '.ok, .summary'
+   otaverify --format json verify package.json | jq '.ok, .summary'
    ```
    `ok: false` means REJECT; the `findings` array explains why.
+   For code-scanning dashboards, emit **SARIF 2.1.0**:
+   ```bash
+   otaverify --format sarif verify package.json > otaverify.sarif
+   ```
+   (`--format` is a global flag — place it before the `verify` subcommand.)
 4. **Inspect findings** — each finding carries a `check`, `severity` (error/warning/info) and `message`.
 5. **Automate in CI** — block shipping an unsafe update:
    ```yaml
@@ -47,7 +52,7 @@ counters, expiry and payload digests (TUF/Uptane spirit). Console script: `otave
 
 ## Contents
 
-- [Why otaverify?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
+- [Why otaverify?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Demos](#demos) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
 
 <a name="why"></a>
 ## Why otaverify?
@@ -67,6 +72,8 @@ Uptane/automotive OTA compliance hook — one command in your release pipeline t
 - ✅ Check Anti Downgrade
 - ✅ Check Payloads
 - ✅ Verify Package
+- ✅ Table · JSON · **SARIF 2.1.0** output (GitHub code-scanning ready)
+- ✅ 8 worked demo scenarios in [`demos/`](demos/) (accept + every reject class)
 - ✅ Runs on Linux/macOS/Windows · Docker · devcontainer
 - ✅ Ports in Python, JavaScript, Go, and Rust (`ports/`)
 
@@ -95,6 +102,36 @@ $ otaverify scan .
 
   2 findings · risk score 5 · 38ms
 ```
+
+<div align="right"><a href="#top">↑ back to top</a></div>
+
+<a name="demos"></a>
+## Demos — worked OTA scenarios
+
+Each folder under [`demos/`](demos/) is a self-contained package in otaverify's
+real input format with a `SCENARIO.md` (provenance, the exact run command, and
+how to act on the verdict). All packages carry **valid precomputed HMAC
+signatures** and are exercised by the test suite, so every one fires as
+documented.
+
+| Demo | Scenario | Verdict |
+|---|---|:---:|
+| [`01-basic`](demos/01-basic/) | Two-key 2-of-2 forward upgrade with payload digest | ACCEPT* |
+| [`04-automotive-ecu`](demos/04-automotive-ecu/) | UN R155/R156 ECU fleet bump, 2-of-3 quorum | ACCEPT |
+| [`05-expired-manifest`](demos/05-expired-manifest/) | Valid but stale staging artifact (freshness) | REJECT |
+| [`06-downgrade-blocked`](demos/06-downgrade-blocked/) | Signed rollback attack to vulnerable firmware | REJECT |
+| [`07-payload-tampered`](demos/07-payload-tampered/) | Authentic manifest, mismatched payload bytes | REJECT |
+| [`08-threshold-not-met`](demos/08-threshold-not-met/) | HSM unavailable, only 1 of 2 signers | REJECT |
+| [`09-unknown-key`](demos/09-unknown-key/) | Supply-chain inject signed by a rogue key | REJECT |
+| [`10-router-multi-image`](demos/10-router-multi-image/) | 3-of-3 multi-image bundle, fully verified | ACCEPT |
+
+```bash
+python -m otaverify verify demos/06-downgrade-blocked/package.json   # REJECT, exit 1
+python -m otaverify --format sarif verify demos/10-router-multi-image/package.json
+```
+
+<sub>* `01-basic` ships a human-readable placeholder signature; re-sign with the
+stdlib (see its `SCENARIO.md`) to make it ACCEPT.</sub>
 
 <div align="right"><a href="#top">↑ back to top</a></div>
 

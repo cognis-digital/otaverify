@@ -1,0 +1,33 @@
+{
+  "root": {
+    "keys": {
+      "hsm-prod": "deadbeefcafebabefeedface0badc0de0123456789abcdeffedcba9876543210"
+    },
+    "threshold": 1
+  },
+  "manifest": {
+    "version": 120,
+    "counter": 120,
+    "expires": "2030-06-01T00:00:00Z",
+    "images": [
+      {
+        "name": "modem",
+        "sha256": "6f7a141d551836ba02f86b6e6f1c57dfc8b94a98c91de85634d17cb43778b7a2",
+        "size": 8
+      }
+    ]
+  },
+  "device": {
+    "version": 119,
+    "counter": 119
+  },
+  "payloads": {
+    "modem": "4e57494d0001dead"
+  },
+  "signatures": [
+    {
+      "keyid": "hsm-prod",
+      "sig": "709e439f0a1f10466984c89e0ba641e60e24035330c36f84b2db0e7543a8c31c"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "root": {
+    "keys": {
+      "release-eng": "112233445566778899aabbccddeeff00112233445566778899aabbccddeeff00",
+      "qa-signer": "ffeeddccbbaa99887766554433221100ffeeddccbbaa99887766554433221100"
+    },
+    "threshold": 2
+  },
+  "manifest": {
+    "version": 31,
+    "counter": 90,
+    "expires": "2030-12-31T00:00:00Z",
+    "images": [
+      {
+        "name": "rootfs",
+        "sha256": "faaafb8022c1404b286a801e8f1cdc1a6f86ff7b3f2e725a47692ef13a1f0a48",
+        "size": 15
+      }
+    ]
+  },
+  "device": {
+    "version": 44,
+    "counter": 102
+  },
+  "payloads": {
+    "rootfs": "c0ffee00112233445566778899aabb"
+  },
+  "signatures": [
+    {
+      "keyid": "release-eng",
+      "sig": "eb1907958cfbe907bf1e834522db44b61a3a6adf4aedd13cdfb1b93072a37f32"
+    },
+    {
+      "keyid": "qa-signer",
+      "sig": "d4aba7f24371ff30b645f86598acdef25a813c51d8442f36f9a0bcc94a7dcb8d"
+    }
+  ]
+}
