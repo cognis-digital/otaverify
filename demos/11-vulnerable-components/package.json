@@ -1,0 +1,56 @@
+{
+  "root": {
+    "keys": {
+      "vendor-a": "00112233445566778899aabbccddeeff",
+      "vendor-b": "ffeeddccbbaa99887766554433221100"
+    },
+    "threshold": 2
+  },
+  "manifest": {
+    "version": 31,
+    "counter": 31,
+    "expires": "2031-01-01T00:00:00Z",
+    "images": [
+      {
+        "name": "gateway-app",
+        "sha256": "4062edaf750fb8074e7e83e0c9028c94e32468a8b6f1614774328ef045150f93",
+        "size": 11,
+        "components": [
+          {
+            "name": "log4j-core",
+            "version": "2.14.1",
+            "ecosystem": "Maven"
+          },
+          {
+            "name": "lodash",
+            "version": "4.17.15",
+            "ecosystem": "npm"
+          }
+        ]
+      }
+    ]
+  },
+  "signatures": [
+    {
+      "keyid": "vendor-a",
+      "sig": "cc922ba1c26a87b61806a8c18473d0e0df61179b36238cf6e2a03978ef87561d"
+    },
+    {
+      "keyid": "vendor-b",
+      "sig": "9cc39a47a6879a72fe03bd256cdfcfb75a9489efb7efc6d68c62348b531aafd1"
+    }
+  ],
+  "device": {
+    "version": 30,
+    "counter": 30
+  },
+  "payloads": {
+    "gateway-app": "7b226f6b223a747275657d"
+  },
+  "components": [
+    {
+      "name": "openssl",
+      "version": "1.1.1k"
+    }
+  ]
+}

@@ -21,6 +21,12 @@ from typing import Sequence
 
 from otaverify import TOOL_NAME, TOOL_VERSION
 from otaverify.core import VerifyResult, load_json, to_sarif, verify_package
+from otaverify.cvecheck import (
+    CveReport,
+    cve_to_sarif,
+    extract_components,
+    scan_package,
+)
 
 _SEVERITY_GLYPH = {"error": "FAIL", "warning": "WARN", "info": "ok"}
 
@@ -67,6 +73,59 @@ def _cmd_verify(args: argparse.Namespace) -> int:
     return 0 if result.ok else 1
 
 
+def _render_cve_table(report: CveReport, path: str) -> str:
+    lines: list[str] = []
+    lines.append(f"OTA package: {path}")
+    lines.append(
+        f"Components  : {report.components_scanned} scanned, "
+        f"{len(report.vulnerable_components)} vulnerable, "
+        f"{len(report.matches)} known vulnerabilities"
+    )
+    lines.append(f"Max severity: {report.max_bucket().upper()}")
+    lines.append("")
+    if not report.matches:
+        lines.append("  (no known vulnerabilities in the offline corpus)")
+        return "\n".join(lines)
+    cwidth = max((len(m.component) for m in report.matches), default=8)
+    for m in report.matches:
+        comp = m.component + (f"@{m.version}" if m.version else "")
+        alias = m.aliases[0] if m.aliases else m.vuln_id
+        lines.append(
+            f"  [{m.severity_bucket.upper():>8}] {comp.ljust(cwidth)}  "
+            f"{m.vuln_id} ({alias})  {m.summary[:70]}"
+        )
+    return "\n".join(lines)
+
+
+def _cmd_cve(args: argparse.Namespace) -> int:
+    try:
+        package = load_json(args.package)
+    except (OSError, ValueError) as exc:
+        print(f"error: cannot load package: {exc}", file=sys.stderr)
+        return 2
+
+    report = scan_package(package, min_severity=args.min_severity)
+
+    if args.format == "json":
+        out = report.to_dict()
+        out["package"] = args.package
+        print(json.dumps(out, indent=2))
+    elif args.format == "sarif":
+        print(json.dumps(cve_to_sarif(report, args.package, TOOL_VERSION), indent=2))
+    else:
+        print(_render_cve_table(report, args.package))
+
+    # Gate: non-zero exit when any match meets/exceeds --fail-on severity.
+    from otaverify.cvecheck import _SEV_ORDER
+
+    floor = _SEV_ORDER.get(args.fail_on, 0)
+    if floor > 0:
+        worst = _SEV_ORDER.get(report.max_bucket(), 0)
+        return 1 if worst >= floor else 0
+    # Default: fail if ANY known vuln was found.
+    return 1 if report.matches else 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog=TOOL_NAME,
@@ -99,6 +158,34 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_verify.add_argument("package", help="path to the OTA package JSON document")
     p_verify.set_defaults(func=_cmd_verify)
+
+    p_cve = sub.add_parser(
+        "cve",
+        help="match the package's components against the bundled offline CVE DB",
+        description=(
+            "Offline component CVE check. Extracts components from the OTA "
+            "package (components[], manifest.images[].components, or image "
+            "names) and matches them against the bundled ~262k-record OSV "
+            "corpus. Fully offline / air-gap safe — no network."
+        ),
+    )
+    p_cve.add_argument("package", help="path to the OTA package JSON document")
+    p_cve.add_argument(
+        "--min-severity",
+        choices=("none", "low", "medium", "high", "critical"),
+        default="none",
+        help="drop matches below this severity bucket (default: none = report all)",
+    )
+    p_cve.add_argument(
+        "--fail-on",
+        choices=("none", "low", "medium", "high", "critical"),
+        default="none",
+        help=(
+            "exit non-zero only if a match meets/exceeds this severity "
+            "(default: none = fail on ANY known vuln)"
+        ),
+    )
+    p_cve.set_defaults(func=_cmd_cve)
 
     return parser
 

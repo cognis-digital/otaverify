@@ -1,0 +1,77 @@
+name: ports
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.21"
+      - name: vet + test
+        working-directory: ports/go
+        run: |
+          go vet ./...
+          go test -v ./...
+      - name: build
+        working-directory: ports/go
+        run: go build -o /tmp/otaverify-go .
+      - name: cross-verify a Python-signed demo
+        run: |
+          /tmp/otaverify-go verify demos/04-automotive-ecu/package.json
+          if /tmp/otaverify-go verify demos/06-downgrade-blocked/package.json; then
+            echo "expected non-zero exit on downgrade demo"; exit 1
+          fi
+
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: test
+        working-directory: ports/rust
+        run: cargo test --verbose
+      - name: build
+        working-directory: ports/rust
+        run: cargo build --release
+      - name: cross-verify a Python-signed demo
+        run: |
+          BIN=ports/rust/target/release/otaverify
+          "$BIN" verify demos/04-automotive-ecu/package.json
+          if "$BIN" verify demos/06-downgrade-blocked/package.json; then
+            echo "expected non-zero exit on downgrade demo"; exit 1
+          fi
+
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: smoke test
+        run: node ports/javascript/test.js
+      - name: cross-verify Python-signed demos
+        run: |
+          node ports/javascript/index.js verify demos/04-automotive-ecu/package.json
+          if node ports/javascript/index.js verify demos/06-downgrade-blocked/package.json; then
+            echo "expected non-zero exit on downgrade demo"; exit 1
+          fi
+
+  shell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: smoke test
+        run: sh ports/shell/test.sh
+      - name: cross-verify Python-signed demos
+        run: |
+          sh ports/shell/otaverify.sh verify demos/04-automotive-ecu/package.json
+          if sh ports/shell/otaverify.sh verify demos/06-downgrade-blocked/package.json; then
+            echo "expected non-zero exit on downgrade demo"; exit 1
+          fi

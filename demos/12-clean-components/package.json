@@ -1,0 +1,44 @@
+{
+  "root": {
+    "keys": {
+      "vendor-a": "00112233445566778899aabbccddeeff",
+      "vendor-b": "ffeeddccbbaa99887766554433221100"
+    },
+    "threshold": 2
+  },
+  "manifest": {
+    "version": 5,
+    "counter": 5,
+    "expires": "2031-01-01T00:00:00Z",
+    "images": [
+      {
+        "name": "sensor-fw",
+        "sha256": "4879dde4c56cdc14106a3853819e25ec6fc26b1e4920ec5723736ecf9662398f",
+        "size": 5,
+        "components": [
+          {
+            "name": "cognis-zzz-nonexistent-component-xyz",
+            "version": "1.0.0"
+          }
+        ]
+      }
+    ]
+  },
+  "signatures": [
+    {
+      "keyid": "vendor-a",
+      "sig": "6b9097459d66832dd39f47ea2ecf69c91cd721888bd86cb1e28d2028c365a19a"
+    },
+    {
+      "keyid": "vendor-b",
+      "sig": "449aaff0f1557ae9c92a08c73f31c6bc0dfe4dedb03c606ddd8cb2914f8fec39"
+    }
+  ],
+  "device": {
+    "version": 4,
+    "counter": 4
+  },
+  "payloads": {
+    "sensor-fw": "6366677631"
+  }
+}
