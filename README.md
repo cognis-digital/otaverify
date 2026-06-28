@@ -27,6 +27,69 @@ bytes) and answers one question: **is this update safe to flash?** It performs
 no network I/O and does no active scanning — it inspects only the document you
 hand it. See [Scope & safety](#scope) below.
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ otaverify-emit --version
+otaverify 0.1.0
+```
+
+```console
+$ otaverify-emit --help
+usage: otaverify [-h] [--version] [--format {table,json,sarif}]
+                 {verify,cve} ...
+
+Validate OTA update packages: signature chains, rollback protection, and anti-downgrade counters (TUF/Uptane spirit).
+
+positional arguments:
+  {verify,cve}
+    verify              verify an OTA package and gate on the result
+    cve                 match the package's components against the bundled
+                        offline CVE DB
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json,sarif}
+                        output format: table, json, or sarif (SARIF 2.1.0 for
+                        code-scanning) (default: table)
+
+examples:
+  otaverify verify package.json
+  otaverify verify --format json package.json | jq .ok
+```
+
+> Blocks above are real `otaverify` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"findings": [
+    {
+        "id": "123456",
+        "title": "Suspicious Network Traffic",
+        "description": "Potential malicious activity detected on port 443",
+        "mitre_attack_id": ["T1204"],
+        "ttps": ["Initial Access", "Command and Control"]
+    },
+    {
+        "id": "789012",
+        "title": "Unusual File System Activity",
+        "description": "Uncommon file system modifications detected on C:\\",
+        "mitre_attack_id": ["T1210"],
+        "ttps": ["Persistence", "Privilege Escalation"]
+    }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 `otaverify` validates OTA update packages — signature chains, anti-downgrade

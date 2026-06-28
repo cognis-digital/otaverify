@@ -1,0 +1,3 @@
+$ otaverify-emit --version
+
+otaverify 0.1.0
