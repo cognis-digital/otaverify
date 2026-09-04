@@ -17,3 +17,8 @@
 [2026-07-14 06:14:50]   +polyglot/typescript/rollback_protection_enforcer.ts  (loc now ~9493)
 [2026-07-14 06:16:45]   +polyglot/c/rollback_protection_enforcer.c  (loc now ~9948)
 [2026-07-14 06:18:40]   +polyglot/cpp/rollback_protection_enforcer.cpp  (loc now ~10457)
+[2026-07-14 06:18:44] === done · otaverify · loc=10457 · {'committed': True, 'pushed': True, 'push_err': ''} ===
+[2026-09-03 14:26:46] === enhance · otaverify · words=120000 loc>=10000 langs=9 push=True ===
+[2026-09-03 14:26:51] phase DOCS — longform 120000-word corpus -> docs/corpus/
+[2026-09-04 00:59:01] phase POLYGLOT — expanding to >= 10000 LOC across 9 languages
+[2026-09-04 01:06:58]   facets: ['core', 'parser', 'validate', 'transform', 'report', 'cli']

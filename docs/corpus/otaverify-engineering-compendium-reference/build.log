@@ -101,3 +101,102 @@
 [2026-07-14 05:49:56]   [14] Frontiers in OTA Validation: Emerging Trends and R — 6098w
 [2026-07-14 05:49:58] ASSEMBLED -> C:\Users\user\cognis-enhance\otaverify\docs\corpus\otaverify-engineering-compendium-reference\otaverify-engineering-compendium-reference.md (90,134 words, 14 sections)
 [2026-07-14 05:49:58] === complete · 90,134 words -> C:\Users\user\cognis-enhance\otaverify\docs\corpus\otaverify-engineering-compendium-reference\otaverify-engineering-compendium-reference.md ===
+[2026-09-03 14:26:51] === longform corpus · "otaverify — Engineering Compendium & Reference" · target ~120,000w · 14 sections × 6 subs × ~1450w · slot=uncensored · web=off ===
+[2026-09-03 14:26:55] hw: free~0.7GB target~9.5GB evicted=[]
+[2026-09-03 14:29:44] outline: 14 sections
+[2026-09-03 14:29:44]   [01] Introduction to OTA Update Validation — exists, skip
+[2026-09-03 14:29:47]   pacing 8s (hot: VRAM 95.6%)
+[2026-09-03 14:29:55]   [02] Fundamentals of Secure Boot and Trusted Execution — exists, skip
+[2026-09-03 14:29:58]   pacing 8s (hot: VRAM 95.6%)
+[2026-09-03 14:40:45]     · Fundamental Concepts of Digital Signatures in  (1078w)
+[2026-09-03 14:48:13]     · Hierarchical Signature Chains: Structure and V (24w)
+[2026-09-03 15:06:57]     · Key Management and Certificate Revocation in O (1244w)
+[2026-09-03 15:13:12]     · Implementation of Multi-Signature Verification (884w)
+[2026-09-03 15:21:37]     · Performance Considerations for Signature Chain (899w)
+[2026-09-03 15:27:59]     · Error Handling and Fallback Mechanisms in Sign (1013w)
+[2026-09-03 15:27:59]   [03] Signature Chains: Theory and Implementation — 5200w
+[2026-09-03 15:28:01]   pacing 8s (hot: VRAM 95.6%)
+[2026-09-03 15:36:49]     · Firmware Versioning and Semantic Constraints (1091w)
+[2026-09-03 15:46:28]     · Bootloader Locking and Update Window Control (1166w)
+[2026-09-03 15:52:43]     · Secure Boot Integration with Rollback Checks (1099w)
+[2026-09-03 15:59:13]     · Hash-Based Rollback Prevention Schemes (24w)
+[2026-09-03 16:07:31]     · Time-Based Rollback Protection Mechanisms (1125w)
+[2026-09-03 16:14:55]     · Persistent State Management for Rollback Detec (1094w)
+[2026-09-03 16:14:55]   [04] Rollback Protection Mechanisms — 5641w
+[2026-09-03 16:14:57]   pacing 8s (hot: VRAM 95.6%)
+[2026-09-03 16:24:34]     · Conceptual Foundations of Anti-Downgrade Count (1134w)
+[2026-09-03 16:33:33]     · Counter Storage and Retrieval Mechanisms (1008w)
+[2026-09-03 16:35:21]     · Integration with Firmware Update Processes (24w)
+[2026-09-03 16:43:09]     · Counter Increment Logic and Conditions (1059w)
+[2026-09-03 16:51:12]     · Counter Validation in OTA Verification Pipelin (1189w)
+[2026-09-03 16:59:10]     · Counter Management Across Device Lifecycles (1139w)
+[2026-09-03 16:59:10]   [05] Anti-Downgrade Counters: Design and Deployment — 5597w
+[2026-09-03 16:59:13]   pacing 8s (hot: VRAM 95.6%)
+[2026-09-03 16:59:21]   [06] Delta-Patch Integrity: Algorithms and Verification — exists, skip
+[2026-09-03 16:59:23]   pacing 8s (hot: VRAM 95.6%)
+[2026-09-03 17:09:17]     · Secure Firmware Header and Metadata Structure (1159w)
+[2026-09-03 17:14:38]     · Cryptographic Signing Mechanisms in Firmware I (24w)
+[2026-09-03 17:23:40]     · Image Partitioning and Layout Specifications (1244w)
+[2026-09-03 17:30:01]     · Versioning and Rollback Protection Schemes (911w)
+[2026-09-03 17:35:00]     · Delta-Patch Encoding and Integrity Verificatio (706w)
+[2026-09-03 17:41:20]     · Secure Boot Integration with Firmware Image Fo (853w)
+[2026-09-03 17:41:20]   [07] Secure Firmware Image Formats and Structures — 4945w
+[2026-09-03 17:41:22]   pacing 8s (hot: VRAM 95.7%)
+[2026-09-03 18:21:59]     · Key Derivation and Secure Storage (1044w)
+[2026-09-03 18:25:39]     · Hierarchical Key Structures and Trust Models (24w)
+[2026-09-03 18:34:25]     · Key Rotation and Lifespan Management (1158w)
+[2026-09-03 18:41:18]     · Secure Key Exchange Protocols in OTA Contexts (944w)
+[2026-09-03 18:49:59]     · Key Compromise Detection and Response Mechanis (1150w)
+[2026-09-03 19:03:18]     · Post-Quantum Key Algorithms and Their Integrat (24w)
+[2026-09-03 19:03:18]   [08] Key Management in OTA Update Systems — 4393w
+[2026-09-03 19:03:20]   pacing 8s (hot: VRAM 96.7%)
+[2026-09-03 19:10:23]     · Hash Functions and Message Authentication (870w)
+[2026-09-03 19:18:04]     · Public-Key Cryptography and Digital Signatures (1039w)
+[2026-09-03 19:27:43]     · Secure Hash Algorithm (SHA) Families and Their (1213w)
+[2026-09-03 19:43:18]     · Elliptic Curve Cryptography (ECC) in OTA Conte (24w)
+[2026-09-03 19:51:54]     · Key Management and Distribution Mechanisms (1107w)
+[2026-09-03 19:58:45]     · Cryptographic Agility and Protocol Flexibility (948w)
+[2026-09-03 19:58:45]   [09] Cryptographic Primitives for OTA Security — 5249w
+[2026-09-03 19:58:47]   pacing 8s (hot: VRAM 96.4%)
+[2026-09-03 20:06:34]     · Pre-Validation Environment Setup (1006w)
+[2026-09-03 20:32:02]     · Signature Chain Verification (24w)
+[2026-09-03 20:39:11]     · Rollback Protection Mechanism Analysis (1011w)
+[2026-09-03 20:46:12]     · Anti-Downgrade Counter Validation (943w)
+[2026-09-03 20:54:10]     · Delta-Patch Integrity Assessment (1115w)
+[2026-09-03 21:01:23]     · Final Package Authenticity Confirmation (1074w)
+[2026-09-03 21:01:23]   [10] Update Package Validation Workflow — 5205w
+[2026-09-03 21:01:26]   pacing 8s (hot: VRAM 96.4%)
+[2026-09-03 21:42:55]     · Real-Time Hash Validation During OTA Transmiss (20w)
+[2026-09-03 21:52:17]     · Dynamic Signature Verification with Trusted Ex (933w)
+[2026-09-03 22:01:06]     · Rollback Detection in Streaming Update Scenari (943w)
+[2026-09-03 22:09:15]     · Error Resilience in Delta-Patch Application (1131w)
+[2026-09-03 22:32:40]     · Interrupted Transfer Recovery via Checksum Rec (24w)
+[2026-09-03 22:39:27]     · Fault Tolerance in Multi-Stage OTA Update Pipe (949w)
+[2026-09-03 22:39:27]   [11] Real-Time Integrity Checking and Error Recovery — 4051w
+[2026-09-03 22:39:29]   pacing 8s (hot: VRAM 96.4%)
+[2026-09-03 22:46:53]     · Computational Overhead of Signature Verificati (985w)
+[2026-09-03 22:54:24]     · Memory Usage in Delta-Patch Application (1054w)
+[2026-09-03 23:01:07]     · Bandwidth Optimization Techniques for OTA Pack (882w)
+[2026-09-03 23:11:03]     · Real-Time Constraints in Embedded OTA Verifica (836w)
+[2026-09-03 23:13:12]     · Parallelization Strategies for Multi-Signature (24w)
+[2026-09-03 23:22:42]     · Latency Analysis in End-to-End OTA Update Chai (1217w)
+[2026-09-03 23:22:42]   [12] Performance Considerations in OTA Verification — 5045w
+[2026-09-03 23:22:45]   pacing 8s (hot: VRAM 96.9%)
+[2026-09-03 23:31:30]     · Automotive OTA Validation in Tesla's Over-the- (1059w)
+[2026-09-03 23:41:13]     · Consumer Electronics: Samsung Galaxy Device Fi (1270w)
+[2026-09-03 23:51:00]     · Industrial IoT: Delta-Patch Failures in Siemen (683w)
+[2026-09-03 23:55:32]     · Mobile Operating Systems: Android's Signature  (681w)
+[2026-09-03 23:58:30]     · Embedded Systems: Firmware Downgrade Vulnerabi (24w)
+[2026-09-04 00:06:22]     · Aerospace Applications: Secure OTA Updates in  (999w)
+[2026-09-04 00:06:22]   [13] Case Studies: Industry Implementations and Failure — 4783w
+[2026-09-04 00:06:25]   pacing 8s (hot: VRAM 96.7%)
+[2026-09-04 00:14:18]     · Post-Quantum Cryptographic Algorithms in OTA S (914w)
+[2026-09-04 00:21:42]     · Zero-Knowledge Proofs for Integrity Verificati (989w)
+[2026-09-04 00:27:49]     · Quantum-Resistant Hash Functions for Delta-Pat (799w)
+[2026-09-04 00:45:26]     · Efficient Key Exchange Protocols for Secure OT (24w)
+[2026-09-04 00:51:59]     · Post-Quantum Rollback Protection Mechanisms (874w)
+[2026-09-04 00:58:50]     · Zero-Knowledge Rollback and Anti-Downgrade Ver (966w)
+[2026-09-04 00:58:50]   [14] Frontier Topics: Post-Quantum and Zero-Knowledge O — 4619w
+[2026-09-04 00:58:53]   pacing 8s (hot: VRAM 96.6%)
+[2026-09-04 00:59:01] ASSEMBLED -> C:\Users\user\cognis-enhance\otaverify\docs\corpus\otaverify-engineering-compendium-reference\otaverify-engineering-compendium-reference.md (144,862 words, 25 sections)
+[2026-09-04 00:59:01] === complete · 144,862 words -> C:\Users\user\cognis-enhance\otaverify\docs\corpus\otaverify-engineering-compendium-reference\otaverify-engineering-compendium-reference.md ===
